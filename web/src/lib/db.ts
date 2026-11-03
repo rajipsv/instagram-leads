@@ -16,7 +16,7 @@ function databaseUrl(): string {
       }
     }
   }
-  throw new Error("DATABASE_URL is not set. Add your Neon connection string to the project .env.");
+  throw new Error("DATABASE_URL is not set. Add your Neon connection string to the project .env (local) or to the Vercel project's Environment Variables (hosted).");
 }
 
 // Neon's HTTP endpoint can time out on a cold first connection; retry network failures twice.

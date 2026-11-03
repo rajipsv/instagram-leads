@@ -87,7 +87,26 @@ npm run build && npm start        # http://127.0.0.1:3100  (npm run dev for deve
 - **Changes made in the app** (lead status, reply notes, approvals) are saved to Neon. Run
   `python scripts/db.py sync -b <slug>` before the agents' next cycle. It pulls those changes into `data/<slug>/` first.
 - **Before hosting it online** (needed to install it on a phone), set `APP_PASSWORD` and `DATABASE_URL` in the host's
-  environment. Without `APP_PASSWORD` the app has no lock.
+  environment. Without `APP_PASSWORD` the app has no lock locally, and refuses to serve on Vercel.
+
+### Deploy to Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frajipsv%2Finstagram-leads&root-directory=web&env=DATABASE_URL,APP_PASSWORD&envDescription=Neon%20connection%20string%20and%20a%20password%20for%20the%20dashboard)
+
+Or by hand:
+
+1. In Vercel, **Add New → Project** and import this repo.
+2. Set **Root Directory** to `web` (the framework is detected as Next.js).
+3. Add environment variables `DATABASE_URL` (your Neon connection string) and `APP_PASSWORD`.
+4. Deploy.
+
+From the CLI instead: `cd web && vercel link && vercel env add DATABASE_URL && vercel env add APP_PASSWORD && vercel --prod`.
+
+Notes:
+- `web/vercel.json` runs the functions in `cle1` (Cleveland), next to a Neon database in AWS `us-east-2`.
+  Change the region if your Neon project is elsewhere.
+- The agents and Python scripts still run on your computer. They share the same Neon database with the hosted app,
+  so run `python scripts/db.py sync -b <slug>` to move changes both ways.
 
 ## Layout
 

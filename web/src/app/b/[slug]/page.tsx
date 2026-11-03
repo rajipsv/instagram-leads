@@ -1,9 +1,9 @@
 import { CheckCircle2, Circle, MessageCircleReply, Search, Send, Sparkles, Target, Trophy, Users } from "lucide-react";
 import Link from "next/link";
 import { ChallengeBars, Funnel, WeeklyTrend } from "@/components/charts";
-import { CopyCommand } from "@/components/client";
+import { CopyCommand, RunDailyLeads } from "@/components/client";
 import { Card, Kpi, PageHeader, Pill, StatusBadge, cx, fmtAgo, humanize, pct } from "@/components/ui";
-import { getBusiness, openNeeds, overview } from "@/lib/queries";
+import { getBusiness, openNeeds, overview, runState } from "@/lib/queries";
 
 export const metadata = { title: "Overview" };
 
@@ -14,6 +14,8 @@ export default async function Overview({ params }: { params: Promise<{ slug: str
   const business = await getBusiness(slug);
   const { counts: c, byChallenge, weekly, events, stages } = await overview(business.id);
   const needs = openNeeds(business.brand);
+  const run = await runState(business.id);
+  const dailyTarget = Number((business.icp as { discovery?: { daily?: { new_leads_target?: number } } }).discovery?.daily?.new_leads_target) || 10;
   const names = new Map((business.icp.challenge_library ?? []).map((ch) => [ch.id, ch.name]));
 
   const pipeline = [
@@ -36,6 +38,10 @@ export default async function Overview({ params }: { params: Promise<{ slug: str
           <span><strong>{needs.length} brand facts are missing.</strong> Content and outreach will show [NEED] placeholders until you add them.</span>
         </Link>
       )}
+
+      <Card title="Daily leads" className="mb-4">
+        <RunDailyLeads business={slug} defaultCount={dailyTarget} runs={run.runs} runnerOnline={run.runnerOnline} runnerSeenAt={run.runnerSeenAt} />
+      </Card>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
         <Kpi label="Leads found" value={c.found} icon={Search} />

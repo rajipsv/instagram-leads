@@ -1,7 +1,7 @@
 import "server-only";
 import { notFound } from "next/navigation";
 import { sql } from "./db";
-import type { Business, Campaign, ContentItem, Lead, LeadEvent, LeadStatus, Learning, Tier } from "./types";
+import type { AgentRun, Business, Campaign, ContentItem, Lead, LeadEvent, LeadStatus, Learning, Tier } from "./types";
 
 const REACHED: LeadStatus[] = ["contacted", "replied", "demo_booked", "won", "lost"];
 const REPLIED: LeadStatus[] = ["replied", "demo_booked", "won"];
@@ -154,4 +154,19 @@ export async function outcomeStats(businessId: string) {
 
 export async function listLearnings(businessId: string) {
   return (await sql()`SELECT week, summary, created_at FROM learnings WHERE business_id = ${businessId} ORDER BY week DESC`) as Learning[];
+}
+
+/** Latest agent runs for the "Run daily leads" card, plus whether the PC runner checked in recently. */
+export async function runState(businessId: string) {
+  const db = sql();
+  const [runRows, beatRows] = await Promise.all([
+    db`SELECT id::text, command, count, status, summary, requested_at, started_at, finished_at
+       FROM agent_runs WHERE business_id = ${businessId} ORDER BY requested_at DESC LIMIT 5`,
+    db`SELECT seen_at, host FROM runner_heartbeat WHERE id = 1`,
+  ]);
+  const runs = runRows as AgentRun[];
+  const beat = beatRows as { seen_at: string; host: string | null }[];
+  const seen = beat[0]?.seen_at ? new Date(beat[0].seen_at) : null;
+  const busy = runs.some((r) => r.status === "running");
+  return { runs, runnerSeenAt: seen?.toISOString() ?? null, runnerOnline: busy || (!!seen && Date.now() - seen.getTime() < 2 * 60_000) };
 }

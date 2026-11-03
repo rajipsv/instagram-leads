@@ -98,3 +98,26 @@ CREATE TABLE IF NOT EXISTS learnings (
     created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
     PRIMARY KEY (business_id, week)
 );
+
+-- Agent runs requested from the web UI. scripts/runner.py on the user's PC picks them up
+-- (it needs Claude Code and Chrome signed in to Instagram), runs them and writes the result back.
+CREATE TABLE IF NOT EXISTS agent_runs (
+    id           BIGSERIAL PRIMARY KEY,
+    business_id  BIGINT NOT NULL REFERENCES businesses(id) ON DELETE CASCADE,
+    command      TEXT NOT NULL CHECK (command IN ('daily-leads')),
+    count        INT  NOT NULL DEFAULT 10 CHECK (count BETWEEN 1 AND 30),
+    status       TEXT NOT NULL DEFAULT 'queued' CHECK (status IN ('queued','running','done','failed','cancelled')),
+    summary      TEXT,
+    requested_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    started_at   TIMESTAMPTZ,
+    finished_at  TIMESTAMPTZ
+);
+CREATE INDEX IF NOT EXISTS agent_runs_status ON agent_runs (status, requested_at);
+CREATE INDEX IF NOT EXISTS agent_runs_business ON agent_runs (business_id, requested_at DESC);
+
+-- Heartbeat from scripts/runner.py, so the UI can say whether the PC runner is online.
+CREATE TABLE IF NOT EXISTS runner_heartbeat (
+    id        INT PRIMARY KEY DEFAULT 1 CHECK (id = 1),
+    host      TEXT,
+    seen_at   TIMESTAMPTZ NOT NULL DEFAULT now()
+);

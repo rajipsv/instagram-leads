@@ -89,6 +89,25 @@ npm run build && npm start        # http://127.0.0.1:3100  (npm run dev for deve
 - **Before hosting it online** (needed to install it on a phone), set `APP_PASSWORD` and `DATABASE_URL` in the host's
   environment. Without `APP_PASSWORD` the app has no lock locally, and refuses to serve on Vercel.
 
+### "Run daily leads" button (PC runner)
+
+The overview page has a **Run daily leads** button, and it works from the Vercel site too. The button only queues a job
+in Neon (`agent_runs`). A small runner on your PC picks it up, runs `/daily-leads <slug> <count>` with Claude Code in
+headless mode, syncs to Neon and posts the result back to the page. Daily leads needs Claude Code and Chrome signed in
+to Instagram, which only exist on your PC, so it can't run on Vercel.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/install_runner.ps1           # start the runner at every Windows login
+python scripts/runner.py --once --dry-run                                     # test the setup (no Instagram)
+powershell -ExecutionPolicy Bypass -File scripts/install_runner.ps1 -Remove   # uninstall
+```
+
+Before pressing the button, keep the PC on, with Chrome open and signed in to Instagram in another tab. The page shows
+whether the runner is online. Its log is in `data/runner.log`, and each run's full output is in
+`data/<slug>/daily/runs/`. Headless Claude can only use the project's scripts, files under `data/`, web search, Chrome
+and Apify (see `ALLOWED_TOOLS` in `scripts/runner.py`). If the database already exists, run `python scripts/db.py init`
+once to add the new tables.
+
 ### Deploy to Vercel
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frajipsv%2Finstagram-leads&root-directory=web&env=DATABASE_URL,APP_PASSWORD&envDescription=Neon%20connection%20string%20and%20a%20password%20for%20the%20dashboard)

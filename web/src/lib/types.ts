@@ -115,3 +115,16 @@ export interface ContentItem {
 }
 
 export interface Learning { week: string; summary: string | null; created_at: string }
+
+export const RUN_STATUSES = ["queued", "running", "done", "failed", "cancelled"] as const;
+export type RunStatus = (typeof RUN_STATUSES)[number];
+export interface AgentRun {
+  id: string;
+  command: string;
+  count: number;
+  status: RunStatus;
+  summary: string | null;
+  requested_at: string;
+  started_at: string | null;
+  finished_at: string | null;
+}

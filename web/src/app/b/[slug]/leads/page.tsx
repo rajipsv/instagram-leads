@@ -224,7 +224,9 @@ function LeadDetail({ slug, lead: l, history, chName, campaigns, closeHref }: {
 
         <Card title="Why this score">
           {l.disqualified_reason
-            ? <p className="text-sm text-danger">Disqualified: {l.disqualified_reason}</p>
+            ? l.disqualified_reason.startsWith("do not contact")
+              ? <p className="text-sm text-danger"><strong>Do not contact.</strong> Why: {l.disqualified_reason.replace(/^do not contact:?\s*/, "") || "set by a person"}</p>
+              : <p className="text-sm text-danger">Disqualified: {l.disqualified_reason}</p>
             : <ul className="list-disc space-y-1 pl-5 text-sm">{l.score_reasons.map((r) => <li key={r}>{r}</li>)}</ul>}
           {l.discovered_via?.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-1.5">

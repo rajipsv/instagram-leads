@@ -142,7 +142,10 @@ def score(lead: dict, icp: dict) -> dict:
     elif age is not None and age > 180:
         dq = f"inactive ({age} days since last post)"
     if lead.get("status") == "do_not_contact":
-        dq = "do not contact"
+        why = lead.get("dnc_reason") or next(
+            (h.get("note") for h in reversed(lead.get("history") or []) if h.get("to") == "do_not_contact" and h.get("note")),
+            "set by a person")
+        dq = f"do not contact: {str(why).removeprefix('auto: ')}"
     if dq:
         return {**lead, "score": 0, "tier": "X", "score_reasons": [], "disqualified_reason": dq}
 
@@ -239,7 +242,7 @@ def dnc_reason(lead: dict, icp: dict) -> str | None:
         if term.startswith("NEED"):
             continue
         if has(text, term) or term.lower().replace(" ", "") in username.replace("_", "").replace(".", ""):
-            return f"matches do-not-contact term '{term}'"
+            return f"'{term}' in its name or bio"
     return None
 
 

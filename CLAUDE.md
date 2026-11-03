@@ -24,6 +24,7 @@ Generic agentic lead + content system on Instagram. Any business is an input:
 ## Scripts
 - `python scripts/leads.py {merge|rescore|list [--since DATE]|known|status|annotate|stats|export|funnel|push} -b <slug>`
 - `python scripts/db.py {check|init|upsert-business|sync} -b <slug>`
+- `python scripts/runner.py [--once] [--dry-run]`: runs jobs queued by the web UI button (needs Claude Code + Chrome on this PC)
 
 ## Required skills
 Both are installed in `.claude/skills/`.

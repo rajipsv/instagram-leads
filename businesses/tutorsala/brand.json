@@ -1,0 +1,56 @@
+{
+  "_comment": "Facts the content and outreach agents may use. Anything starting with NEED must be filled in by a person; agents never invent it. Source: www.tutorsala.com, read 2026-11-03.",
+  "slug": "tutorsala",
+  "brand": "Tutorsala",
+  "instagram_handle": "NEED: @handle",
+  "website": "https://www.tutorsala.com",
+  "contact": {
+    "demo_url": "https://www.tutorsala.com/start-page.html",
+    "whatsapp": "https://wa.me/919553371972",
+    "email": "hello@tutorsala.com"
+  },
+  "one_liner": "Tutorsala runs your tuition center for about the fee of one student: enquiries, batches and class schedules, attendance, fees, WhatsApp parent updates and a parent portal.",
+  "positioning": "An operations platform for tuition centers, not an LMS. Teaching stays on Zoom or Meet; Tutorsala runs the business around it.",
+  "audience": "Independent tutors, coaching centres and academies in India running batches of students",
+  "value_props": [
+    "Education CRM: capture enquiries from your website, WhatsApp and walk-ins, run demos and enrol students in one pipeline",
+    "Academy OS: batches, schedules, attendance, tests and tutors in one place",
+    "Parent communication: automated WhatsApp, email and SMS when attendance drops or test results are posted, plus a parent portal",
+    "Fees: see fees due and paid, monthly or per-class, without chasing anyone on the phone. Tuition is collected on your own UPI or bank",
+    "Student success: track homework, skills, interventions and progress, not just grades",
+    "Business intelligence: KPIs, trends and daily decisions, so you know what to do next",
+    "AI assistants for owners, tutors, parents and students: insights and message drafts",
+    "Setup done with you on a call: batches, teachers and fees added and students imported from Excel. Nothing to install",
+    "Marketplace listing so parents can find your center and send an enquiry"
+  ],
+  "pricing": {
+    "starter": "Rs 18,000/year (launch offer, 50% off Rs 36,000): 1 branch, up to 100 active students. About Rs 1,500 a month",
+    "multi_branch": "+ Rs 12,000 per branch per year (50% off Rs 24,000), + Rs 30 per student per year above 100 per branch",
+    "example": "2 branches, 120 students: Rs 18,000 + Rs 12,000 = Rs 30,000/year",
+    "note": "GST may apply on the platform fee"
+  },
+  "proof_points": [],
+  "proof_points_note": "NEED: real customer count, testimonial or result. The website shows none yet, so no proof may be used.",
+  "offer": "Free 30-day design-partner pilot (limited early centers), set up with you on a call. Then Starter at the 50% launch price.",
+  "cta": "Book a free demo (www.tutorsala.com/start-page.html) or message on WhatsApp",
+  "voice": {
+    "tone": "Warm, practical, teacher-to-teacher. Short sentences. No hype.",
+    "languages": [
+      "English",
+      "Hinglish where natural"
+    ],
+    "avoid": [
+      "guaranteed results",
+      "#1",
+      "revolutionary",
+      "best in India",
+      "100% "
+    ]
+  },
+  "content_pillars": [
+    "Run your academy better (operations tips)",
+    "Fill your batches (admissions and marketing tips)",
+    "Teacher stories and behind-the-scenes",
+    "Tutorsala product walk-throughs"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContentItem",
+  "type": "object",
+  "required": ["id", "week", "format", "pillar", "hook", "caption", "review_status"],
+  "properties": {
+    "id": { "type": "string" },
+    "week": { "type": "string", "description": "ISO week, e.g. 2026-W45" },
+    "publish_date": { "type": "string" },
+    "format": { "enum": ["reel", "carousel", "post", "story"] },
+    "pillar": { "type": "string" },
+    "hook": { "type": "string" },
+    "script_or_slides": { "type": "array", "items": { "type": "string" } },
+    "caption": { "type": "string" },
+    "hashtags": { "type": "array", "items": { "type": "string" } },
+    "cta": { "type": "string" },
+    "visual_brief": { "type": "string" },
+    "source_insight": { "type": "string", "description": "Which audience insight this answers" },
+    "needs": { "type": "array", "items": { "type": "string" }, "description": "Open [NEED: ...] facts a person must supply" },
+    "review_status": { "enum": ["draft", "safety_passed", "approved", "scheduled", "published", "rejected"] },
+    "campaignforge_post_id": { "type": ["string", "null"] }
+  }
+}

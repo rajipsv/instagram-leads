@@ -1,0 +1,250 @@
+{
+  "_comment": "Ideal Customer Profile. Example profile: TutorSala. scripts/leads.py reads this file.",
+  "business": "TutorSala",
+  "slug": "tutorsala",
+  "lead_kind": "business_accounts",
+  "target_customer": "Independent tutors, coaching centres and academies in India that run student batches",
+  "segments": {
+    "school_tuition": [
+      "tuition",
+      "tutor",
+      "home tutor",
+      "cbse",
+      "icse",
+      "state board",
+      "maths classes",
+      "science classes"
+    ],
+    "competitive_exams": [
+      "jee",
+      "neet",
+      "iit",
+      "upsc",
+      "ssc",
+      "bank exam",
+      "cat prep",
+      "gate",
+      "olympiad"
+    ],
+    "language_testprep": [
+      "ielts",
+      "toefl",
+      "pte",
+      "spoken english",
+      "german classes",
+      "french classes",
+      "gre",
+      "sat"
+    ],
+    "skills_arts": [
+      "music academy",
+      "dance academy",
+      "art classes",
+      "abacus",
+      "vedic maths",
+      "coding classes",
+      "robotics"
+    ],
+    "general_academy": [
+      "academy",
+      "coaching",
+      "institute",
+      "classes",
+      "learning centre",
+      "learning center",
+      "tutorial"
+    ]
+  },
+  "discovery": {
+    "hashtags": [
+      "tuitionclasses",
+      "coachingcentre",
+      "coachingclasses",
+      "homeTuition",
+      "jeepreparation",
+      "neetpreparation",
+      "ieltscoaching",
+      "onlinetutor",
+      "tuitionteacher",
+      "admissionsopen"
+    ],
+    "keyword_searches": [
+      "tuition classes admission open",
+      "coaching centre new batch",
+      "online tutor india"
+    ],
+    "cities": [
+      "Bengaluru",
+      "Hyderabad",
+      "Chennai",
+      "Pune"
+    ],
+    "max_profile_lookups_per_day": 30,
+    "daily": {
+      "_comment": "Daily mode (/daily-leads). Approved 2026-11-03 after repeated 429s: slower and smaller.",
+      "new_leads_target": 10,
+      "max_search_calls": 12,
+      "hashtags_per_day": 3,
+      "keyword_searches_per_day": 1,
+      "delay_ms_between_calls": [2500, 5000],
+      "backoff_on_429_s": 300,
+      "stop_after_429s_in_a_row": 2
+    }
+  },
+  "digital_maturity": {
+    "_comment": "Approved 2026-11-03: shortlist centres with no website or management system. A marketing website is not a system (e.g. achieverstuitionbureau.com is WordPress + WhatsApp, no portal).",
+    "points": { "none": 10, "website_only": -10, "has_system": -25 },
+    "exclude_has_system": true,
+    "qualify_if_no_website": true,
+    "link_only_domains": ["wa.me", "api.whatsapp.com", "whatsapp.com", "linktr.ee", "bio.link", "beacons.ai", "linkin.bio", "taplink.cc", "forms.gle", "docs.google.com", "g.page", "maps.app.goo.gl", "goo.gl", "bit.ly", "youtube.com", "youtu.be", "facebook.com", "instagram.com", "t.me", "telegram.me", "justdial.com", "sulekha.com", "urbanpro.com", "schoolandcollegelistings.com", "threads.net", "linkedin.com"],
+    "system_domains": ["classplusapp.com", "classplus.co", "teachmint.com", "myclassboard.com", "edmingle.com", "graphy.com", "appx.co.in", "teachable.com", "thinkific.com", "fedena.com", "entab.in", "schoolpad.in", "play.google.com", "apps.apple.com", "testbook.com", "spayee.com"],
+    "management_terms": ["student login", "parent login", "student portal", "parent portal", "download our app", "download the app", "available on play store", "get it on google play", "erp", "lms", "online fee payment"]
+  },
+  "size_band": {
+    "min_followers": 300,
+    "sweet_min": 1000,
+    "sweet_max": 30000,
+    "max_followers": 200000
+  },
+  "buying_signals": [
+    "admission open",
+    "admissions open",
+    "new batch",
+    "enroll",
+    "enrol",
+    "register now",
+    "dm for fees",
+    "fees",
+    "demo class",
+    "free demo",
+    "wa.me",
+    "whatsapp",
+    "branches",
+    "branch",
+    "hiring tutors",
+    "we are hiring",
+    "limited seats",
+    "batch starts"
+  ],
+  "exclusions": {
+    "usernames": [
+      "byjus",
+      "unacademy",
+      "vedantu",
+      "physicswallah",
+      "allen_career_institute",
+      "aakash_institute",
+      "upgrad",
+      "simplilearn"
+    ],
+    "bio_terms": [
+      "meme",
+      "fan page",
+      "giveaway",
+      "crypto",
+      "forex"
+    ]
+  },
+  "challenge_library": [
+    {
+      "id": "fee_collection",
+      "name": "Chasing fee payments",
+      "signals": [
+        "fees",
+        "fee reminder",
+        "pay fees",
+        "due date",
+        "installment",
+        "emi"
+      ],
+      "evidence_hint": "Fee posts, payment reminders in stories, 'DM for fees'",
+      "value_prop_hint": "NEED: matching value prop, e.g. automated fee reminders"
+    },
+    {
+      "id": "admissions_pipeline",
+      "name": "Filling batches / tracking enquiries",
+      "signals": [
+        "admission open",
+        "admissions open",
+        "new batch",
+        "limited seats",
+        "enroll",
+        "register now",
+        "demo class",
+        "free demo"
+      ],
+      "evidence_hint": "Repeated 'admissions open' posts, DM or WhatsApp enquiries",
+      "value_prop_hint": "NEED: e.g. enquiry and admission tracking"
+    },
+    {
+      "id": "scheduling",
+      "name": "Batch timetables and rescheduling",
+      "signals": [
+        "timing",
+        "timings",
+        "schedule",
+        "batch timing",
+        "holiday",
+        "class cancelled",
+        "rescheduled",
+        "morning batch",
+        "evening batch"
+      ],
+      "evidence_hint": "Posts announcing timing changes or holidays",
+      "value_prop_hint": "NEED: e.g. batch and timetable management"
+    },
+    {
+      "id": "parent_communication",
+      "name": "Keeping parents updated",
+      "signals": [
+        "parents",
+        "ptm",
+        "progress report",
+        "report card",
+        "attendance"
+      ],
+      "evidence_hint": "PTM posts, report cards, attendance shout-outs",
+      "value_prop_hint": "NEED: e.g. parent app / attendance alerts"
+    },
+    {
+      "id": "multi_branch",
+      "name": "Running several branches or tutors",
+      "signals": [
+        "branches",
+        "branch",
+        "new branch",
+        "franchise",
+        "hiring tutors",
+        "we are hiring",
+        "faculty"
+      ],
+      "evidence_hint": "Branch launches, tutor hiring posts",
+      "value_prop_hint": "NEED: e.g. multi-branch dashboard"
+    },
+    {
+      "id": "tests_and_results",
+      "name": "Running tests and publishing results",
+      "signals": [
+        "test series",
+        "mock test",
+        "results",
+        "toppers",
+        "rank",
+        "scored"
+      ],
+      "evidence_hint": "Result and topper posts, test series announcements",
+      "value_prop_hint": "NEED: e.g. online tests and result reports"
+    }
+  ],
+  "weights": {
+    "fit": 35,
+    "size": 20,
+    "activity": 15,
+    "engagement": 10,
+    "signals": 20
+  },
+  "tiers": {
+    "A": 70,
+    "B": 50
+  }
+}

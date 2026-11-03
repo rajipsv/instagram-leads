@@ -1,0 +1,19 @@
+{
+  "_comment": "Facts the content and outreach agents may use. Anything starting with NEED must be filled in by a person; agents never invent it.",
+  "slug": "NEED: same slug as icp.json",
+  "brand": "NEED: business name",
+  "instagram_handle": "NEED: @handle",
+  "website": "NEED: https://...",
+  "one_liner": "NEED: one sentence on what the business does and for whom",
+  "audience": "NEED: who the content is for",
+  "value_props": ["NEED: benefit 1", "NEED: benefit 2", "NEED: benefit 3"],
+  "proof_points": ["NEED: real customer count, testimonial or result. Leave the list empty if none."],
+  "offer": "NEED: e.g. free trial, free consultation, discount",
+  "cta": "NEED: e.g. 'DM START' or link in bio",
+  "voice": {
+    "tone": "NEED: 1-2 sentences on how the brand sounds",
+    "languages": ["English"],
+    "avoid": ["guaranteed", "#1", "revolutionary", "best in"]
+  },
+  "content_pillars": ["NEED: pillar 1", "NEED: pillar 2", "NEED: pillar 3"]
+}

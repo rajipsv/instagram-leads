@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* Design system: web/design-system/growth-intelligence/MASTER.md (UI/UX Pro Max: Data-Dense Dashboard,
+   blue data + amber highlights, Fira Code / Fira Sans). Body text uses slate-900 for AA contrast. */
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text: #0f172a;
+  --muted: #475569;
+  --primary: #1e40af;
+  --primary-hover: #1e3a8a;
+  --primary-soft: #dbeafe;
+  --secondary: #3b82f6;
+  --accent: #f59e0b;
+  --accent-soft: #fef3c7;
+  --accent-text: #92400e;
+  --success: #15803d;
+  --success-soft: #dcfce7;
+  --danger: #b91c1c;
+  --danger-soft: #fee2e2;
+  --ring: #3b82f6;
+  color-scheme: light;
+}
+
+:root.dark {
+  --bg: #0b1220;
+  --surface: #111a2e;
+  --surface-2: #17223a;
+  --border: #24314d;
+  --border-strong: #33446a;
+  --text: #e2e8f0;
+  --muted: #9fb0cc;
+  --primary: #60a5fa;
+  --primary-hover: #93c5fd;
+  --primary-soft: #1e3a8a55;
+  --secondary: #3b82f6;
+  --accent: #fbbf24;
+  --accent-soft: #78350f55;
+  --accent-text: #fcd34d;
+  --success: #4ade80;
+  --success-soft: #14532d66;
+  --danger: #f87171;
+  --danger-soft: #7f1d1d66;
+  --ring: #93c5fd;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-text: var(--accent-text);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-ring: var(--ring);
+  --font-sans: "Fira Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, monospace;
+}
+
+html, body { background: var(--bg); color: var(--text); }
+body { -webkit-font-smoothing: antialiased; }
+
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 4px; }
+
+/* Space for the mobile bottom tab bar and the iOS home indicator */
+.pb-safe { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+@media (min-width: 1024px) { .pb-safe { padding-bottom: 2rem; } }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+.prose-gi h1, .prose-gi h2, .prose-gi h3 { font-family: var(--font-mono); font-weight: 600; margin: 1.25rem 0 0.5rem; }
+.prose-gi h1 { font-size: 1.15rem; } .prose-gi h2 { font-size: 1.05rem; } .prose-gi h3 { font-size: 0.95rem; }
+.prose-gi p, .prose-gi li { color: var(--text); line-height: 1.6; font-size: 0.925rem; }
+.prose-gi ul { list-style: disc; padding-left: 1.25rem; margin: 0.5rem 0; }
+.prose-gi ol { list-style: decimal; padding-left: 1.25rem; margin: 0.5rem 0; }
+.prose-gi table { width: 100%; font-size: 0.85rem; border-collapse: collapse; margin: 0.75rem 0; display: block; overflow-x: auto; }
+.prose-gi th, .prose-gi td { border: 1px solid var(--border); padding: 0.35rem 0.5rem; text-align: left; }
+.prose-gi code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surface-2); padding: 0.1rem 0.3rem; border-radius: 4px; }

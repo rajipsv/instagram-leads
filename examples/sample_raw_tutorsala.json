@@ -1,0 +1,10 @@
+[
+  {"username": "brightminds_tuition", "full_name": "Bright Minds Tuition Centre", "bio": "CBSE & ICSE tuition for classes 6-10 | Admissions open for 2027 batch | WhatsApp wa.me/91xxxxxxxxxx", "category": "Education", "followers": 2400, "posts_count": 310, "is_private": false, "is_business": true, "city": "Bengaluru", "last_post_at": "2026-10-29T10:00:00Z",
+   "recent_posts": [{"shortcode": "x1", "caption": "New batch starts Monday! Free demo class", "likes": 80, "comments": 12, "taken_at": "2026-10-29"}],
+   "discovered_via": [{"type": "hashtag", "value": "tuitionclasses"}]},
+  {"username": "brightminds_tuition", "discovered_via": [{"type": "hashtag", "value": "admissionsopen"}]},
+  {"username": "neetwithnisha", "full_name": "NEET Biology with Nisha", "bio": "NEET coaching | 8 yrs teaching | DM for fees", "followers": 15200, "is_private": false, "last_post_at": "2026-10-10T00:00:00Z", "avg_engagement_rate": 0.012, "discovered_via": [{"type": "search", "value": "neet coaching new batch"}]},
+  {"username": "unacademy", "full_name": "Unacademy", "bio": "India's largest learning platform", "followers": 2500000, "discovered_via": [{"type": "hashtag", "value": "jeepreparation"}]},
+  {"username": "study_memes_daily", "bio": "meme page for students", "followers": 9000, "discovered_via": [{"type": "hashtag", "value": "neetpreparation"}]},
+  {"username": "rhythm_dance_academy", "full_name": "Rhythm Dance Academy", "bio": "Dance academy | Kids & adults | 3 branches in Pune", "followers": 800, "last_post_at": "2026-08-15T00:00:00Z", "discovered_via": [{"type": "location", "value": "Pune"}]}
+]

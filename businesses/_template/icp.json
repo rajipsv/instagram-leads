@@ -1,0 +1,69 @@
+{
+  "_comment": "Ideal Customer Profile template. Copy this folder to businesses/<slug>/ or run /onboard-business. scripts/leads.py reads this file.",
+  "business": "NEED: business name",
+  "slug": "NEED: lowercase-slug (must match the folder name)",
+  "lead_kind": "business_accounts",
+  "target_customer": "NEED: who buys from this business, in one sentence",
+  "segments": {
+    "segment_one": [
+      "keyword",
+      "keyword"
+    ],
+    "segment_two": [
+      "keyword",
+      "keyword"
+    ]
+  },
+  "discovery": {
+    "hashtags": [
+      "NEED: 6-10 hashtags your customers use, without #"
+    ],
+    "keyword_searches": [
+      "NEED: 2-4 phrases your customers would put in a caption"
+    ],
+    "cities": [],
+    "max_profile_lookups_per_day": 150
+  },
+  "size_band": {
+    "min_followers": 300,
+    "sweet_min": 1000,
+    "sweet_max": 30000,
+    "max_followers": 200000
+  },
+  "buying_signals": [
+    "NEED: phrases in a bio or caption that show they need you now"
+  ],
+  "exclusions": {
+    "usernames": [
+      "NEED: competitors and big brands to skip"
+    ],
+    "bio_terms": [
+      "meme",
+      "fan page",
+      "giveaway",
+      "crypto"
+    ]
+  },
+  "challenge_library": [
+    {
+      "id": "challenge_id",
+      "name": "NEED: an operational problem your customers have that you solve",
+      "signals": [
+        "phrases in bios or captions that suggest it"
+      ],
+      "evidence_hint": "what a post showing this problem looks like",
+      "value_prop_hint": "which brand.json value prop solves it"
+    }
+  ],
+  "weights": {
+    "fit": 35,
+    "size": 20,
+    "activity": 15,
+    "engagement": 10,
+    "signals": 20
+  },
+  "tiers": {
+    "A": 70,
+    "B": 50
+  }
+}

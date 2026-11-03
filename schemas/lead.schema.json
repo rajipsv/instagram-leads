@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lead",
+  "type": "object",
+  "required": ["username", "platform"],
+  "properties": {
+    "platform": { "const": "instagram" },
+    "username": { "type": "string" },
+    "full_name": { "type": "string" },
+    "profile_url": { "type": "string" },
+    "bio": { "type": "string" },
+    "category": { "type": ["string", "null"] },
+    "external_url": { "type": ["string", "null"] },
+    "public_email": { "type": ["string", "null"] },
+    "followers": { "type": "integer" },
+    "following": { "type": "integer" },
+    "posts_count": { "type": "integer" },
+    "is_private": { "type": "boolean" },
+    "is_business": { "type": "boolean" },
+    "city": { "type": ["string", "null"] },
+    "segment": { "type": ["string", "null"] },
+    "last_post_at": { "type": ["string", "null"], "description": "ISO date of most recent post" },
+    "avg_engagement_rate": { "type": ["number", "null"], "description": "(likes+comments)/followers averaged over recent posts" },
+    "recent_posts": {
+      "type": "array",
+      "items": { "type": "object", "properties": { "shortcode": {"type": "string"}, "caption": {"type": "string"}, "likes": {"type": "integer"}, "comments": {"type": "integer"}, "taken_at": {"type": "string"} } }
+    },
+    "discovered_via": {
+      "type": "array",
+      "items": { "type": "object", "properties": { "type": { "enum": ["hashtag", "search", "location", "comment", "manual"] }, "value": { "type": "string" } } }
+    },
+    "score": { "type": "number" },
+    "tier": { "enum": ["A", "B", "C", "X"] },
+    "score_reasons": { "type": "array", "items": { "type": "string" } },
+    "disqualified_reason": { "type": ["string", "null"] },
+    "status": { "enum": ["new", "qualified", "contacted", "replied", "demo_booked", "won", "lost", "do_not_contact"] },
+    "notes": { "type": "string" },
+    "first_seen_at": { "type": "string" },
+    "updated_at": { "type": "string" }
+  }
+}

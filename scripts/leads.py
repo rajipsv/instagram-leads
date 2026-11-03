@@ -225,7 +225,34 @@ def merge_record(old: dict | None, new: dict) -> dict:
     return merged
 
 
+def dnc_reason(lead: dict, icp: dict) -> str | None:
+    """Why this lead must never be contacted, from icp.json `do_not_contact` rules, or None."""
+    rules = icp.get("do_not_contact") or {}
+    username = lead["username"].lower()
+    if username in {u.lower().lstrip("@") for u in rules.get("usernames", [])}:
+        return "listed in do_not_contact.usernames"
+    if rules.get("include_excluded_usernames") and username in {
+            u.lower() for u in icp.get("exclusions", {}).get("usernames", [])}:
+        return "competitor or big brand (exclusions.usernames)"
+    text = " ".join(str(lead.get(k) or "") for k in ("full_name", "bio", "category", "username")).lower()
+    for term in rules.get("terms", []):
+        if term.startswith("NEED"):
+            continue
+        if has(text, term) or term.lower().replace(" ", "") in username.replace("_", "").replace(".", ""):
+            return f"matches do-not-contact term '{term}'"
+    return None
+
+
 def apply_score(lead: dict, icp: dict) -> dict:
+    reason = dnc_reason(lead, icp)
+    if reason and lead.get("status") in (None, "new", "qualified"):
+        # Permanent: do_not_contact is a person-level status, so later merges never undo it.
+        old = lead.get("status")
+        lead = {**lead, "status": "do_not_contact", "dnc_reason": reason}
+        lead.setdefault("history", [])
+        lead["history"] = lead["history"] + [{"at": now(), "from": old, "to": "do_not_contact",
+                                              "campaign": lead.get("campaign"), "note": f"auto: {reason}"}]
+        lead["notes"] = (str(lead.get("notes") or "") + f"\n[{now()[:10]}] do not contact (auto): {reason}").strip()
     s = score(lead, icp)
     if s.get("status") not in HUMAN_STATUSES:
         # Qualified = tier A/B, or (if the ICP says so) any non-disqualified lead confirmed to have no website
@@ -250,6 +277,18 @@ def cmd_merge(a, p, icp):
     save_leads(p["leads"], leads)
     print(f"Merged {count} records from {len(files)} raw files -> {len(leads)} unique leads")
     cmd_funnel(a, p, icp)
+
+
+def cmd_dnc(a, p, icp):
+    """Preview: leads the do_not_contact rules match (nothing is saved; merge/rescore applies them)."""
+    hits = [(l, dnc_reason(l, icp)) for l in load_leads(p["leads"]).values()]
+    hits = [(l, r) for l, r in hits if r or l.get("status") == "do_not_contact"]
+    for l, r in hits:
+        state = "already do_not_contact" if l.get("status") == "do_not_contact" else f"would flag (now {l.get('status')})"
+        if l.get("status") in HUMAN_STATUSES - {"do_not_contact"}:
+            state = f"match, but a person set '{l['status']}': left alone"
+        print(f"@{l['username']:<32} {state:<40} {r or l.get('dnc_reason') or 'set by a person'}")
+    print(f"{len(hits)} lead(s)")
 
 
 def cmd_rescore(a, p, icp):
@@ -387,7 +426,7 @@ def cmd_push(a, p, icp):
 def main():
     load_env()
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["merge", "rescore", "list", "known", "status", "export", "funnel", "annotate", "stats", "push"])
+    ap.add_argument("command", choices=["merge", "rescore", "list", "known", "status", "export", "funnel", "annotate", "stats", "push", "dnc"])
     ap.add_argument("--since", help="list: only leads first seen on/after this date (YYYY-MM-DD)")
     ap.add_argument("--business", "-b", default=os.environ.get("DEFAULT_BUSINESS"), help="profile slug under businesses/")
     ap.add_argument("--tier")

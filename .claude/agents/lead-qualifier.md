@@ -38,10 +38,13 @@ explained lead list for the business named in your task.
 4. Write the enriched records to `data/<slug>/raw/qualify-<YYYYMMDD-HHMM>.json`,
    then run `python scripts/leads.py merge -b <slug>` again. The script does the
    scoring. Do not hand-score.
-5. Run `python scripts/leads.py list -b <slug> --tier A` and review the list. If a
-   lead is clearly wrong (a student, a news page, a competitor), set
-   `--set do_not_contact --note "<why>"`, and say in your report which ICP keyword
-   or exclusion would have caught it.
+5. `merge` applies `icp.json → do_not_contact` rules on its own (competitors, plus account
+   types the business must never contact, such as tuition bureaus for Tutorsala). Run
+   `python scripts/leads.py dnc -b <slug>` and include what it flagged in your report.
+   Then review the A and B tiers (`list --tier A`, `list --tier B`). If a lead is clearly
+   wrong but no rule caught it (a student, a news page, a competitor's reseller), set
+   `--set do_not_contact --note "<why>"`, and suggest the term to add to
+   `do_not_contact.terms` so the rule catches the next one.
 
 ## Rules
 - Store only public business-profile data. Never collect personal accounts,

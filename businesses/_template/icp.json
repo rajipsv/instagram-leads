@@ -44,6 +44,14 @@
       "crypto"
     ]
   },
+  "do_not_contact": {
+    "_comment": "Leads matching these are set to do_not_contact by leads.py merge/rescore (permanent). Matched against name, bio, category and username.",
+    "include_excluded_usernames": true,
+    "usernames": [],
+    "terms": [
+      "NEED: account types this business must never contact, e.g. competitors' resellers or agencies"
+    ]
+  },
   "challenge_library": [
     {
       "id": "challenge_id",

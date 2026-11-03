@@ -86,19 +86,82 @@
       "max_search_calls": 12,
       "hashtags_per_day": 3,
       "keyword_searches_per_day": 1,
-      "delay_ms_between_calls": [2500, 5000],
+      "delay_ms_between_calls": [
+        2500,
+        5000
+      ],
       "backoff_on_429_s": 300,
       "stop_after_429s_in_a_row": 2
     }
   },
   "digital_maturity": {
     "_comment": "Approved 2026-11-03: shortlist centres with no website or management system. A marketing website is not a system (e.g. achieverstuitionbureau.com is WordPress + WhatsApp, no portal).",
-    "points": { "none": 10, "website_only": -10, "has_system": -25 },
+    "points": {
+      "none": 10,
+      "website_only": -10,
+      "has_system": -25
+    },
     "exclude_has_system": true,
     "qualify_if_no_website": true,
-    "link_only_domains": ["wa.me", "api.whatsapp.com", "whatsapp.com", "linktr.ee", "bio.link", "beacons.ai", "linkin.bio", "taplink.cc", "forms.gle", "docs.google.com", "g.page", "maps.app.goo.gl", "goo.gl", "bit.ly", "youtube.com", "youtu.be", "facebook.com", "instagram.com", "t.me", "telegram.me", "justdial.com", "sulekha.com", "urbanpro.com", "schoolandcollegelistings.com", "threads.net", "linkedin.com"],
-    "system_domains": ["classplusapp.com", "classplus.co", "teachmint.com", "myclassboard.com", "edmingle.com", "graphy.com", "appx.co.in", "teachable.com", "thinkific.com", "fedena.com", "entab.in", "schoolpad.in", "play.google.com", "apps.apple.com", "testbook.com", "spayee.com"],
-    "management_terms": ["student login", "parent login", "student portal", "parent portal", "download our app", "download the app", "available on play store", "get it on google play", "erp", "lms", "online fee payment"]
+    "link_only_domains": [
+      "wa.me",
+      "api.whatsapp.com",
+      "whatsapp.com",
+      "linktr.ee",
+      "bio.link",
+      "beacons.ai",
+      "linkin.bio",
+      "taplink.cc",
+      "forms.gle",
+      "docs.google.com",
+      "g.page",
+      "maps.app.goo.gl",
+      "goo.gl",
+      "bit.ly",
+      "youtube.com",
+      "youtu.be",
+      "facebook.com",
+      "instagram.com",
+      "t.me",
+      "telegram.me",
+      "justdial.com",
+      "sulekha.com",
+      "urbanpro.com",
+      "schoolandcollegelistings.com",
+      "threads.net",
+      "linkedin.com"
+    ],
+    "system_domains": [
+      "classplusapp.com",
+      "classplus.co",
+      "teachmint.com",
+      "myclassboard.com",
+      "edmingle.com",
+      "graphy.com",
+      "appx.co.in",
+      "teachable.com",
+      "thinkific.com",
+      "fedena.com",
+      "entab.in",
+      "schoolpad.in",
+      "play.google.com",
+      "apps.apple.com",
+      "testbook.com",
+      "spayee.com"
+    ],
+    "management_terms": [
+      "student login",
+      "parent login",
+      "student portal",
+      "parent portal",
+      "download our app",
+      "download the app",
+      "available on play store",
+      "get it on google play",
+      "erp",
+      "lms",
+      "online fee payment"
+    ]
   },
   "size_band": {
     "min_followers": 300,
@@ -143,6 +206,29 @@
       "giveaway",
       "crypto",
       "forex"
+    ]
+  },
+  "do_not_contact": {
+    "_comment": "Leads matching these are set to do_not_contact by leads.py merge/rescore. It is permanent and never contacted. Matched against name, bio, category and username.",
+    "include_excluded_usernames": true,
+    "usernames": [],
+    "terms": [
+      "tuition bureau",
+      "tutor bureau",
+      "tutors bureau",
+      "tutorial bureau",
+      "home tutor bureau",
+      "home tuition bureau",
+      "tuition agency",
+      "tutor agency",
+      "tutors agency",
+      "tutor matching",
+      "home tutor provider",
+      "tutor provider",
+      "tutors provider",
+      "hire a tutor",
+      "find a tutor",
+      "tutor placement"
     ]
   },
   "challenge_library": [
